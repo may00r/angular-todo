@@ -1,0 +1,64 @@
+<div class="content" *ngIf="projects">
+<!--  <mat-card class="todo-card">-->
+<!--    <mat-card-header>-->
+<!--      <mat-card-title>TODO PLACEHOLDER</mat-card-title>-->
+<!--    </mat-card-header>-->
+<!--    <mat-card-content>-->
+<!--      <section class="todos-section" [formGroup]="todo_card">-->
+<!--        <p><mat-checkbox formControlName="todoName">Купить молоко</mat-checkbox></p>-->
+<!--      </section>-->
+<!--      <section class="example-section" [formGroup]="todo_card">-->
+<!--        <p>{{todo_card.value | json}}</p>-->
+<!--      </section>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+
+
+<!--  <mat-card class="todo-card" *ngFor="let p of projects" [id]="p.id">-->
+<!--    <mat-card-header>-->
+<!--      <mat-card-title>{{p.title}}</mat-card-title>-->
+<!--    </mat-card-header>-->
+<!--    <mat-card-content>-->
+<!--      <section class="todos-section" [formGroup]="todo_card">-->
+<!--        <ng-container *ngFor="let t of todos" >-->
+<!--          <p *ngIf="t.project_id == p.id" id="todo-checkbox"><mat-checkbox formControlName="todoName">{{t.text}}</mat-checkbox></p>-->
+<!--        </ng-container>-->
+
+<!--      </section>-->
+<!--      <section class="example-section" [formGroup]="todo_card">-->
+<!--        <p>{{todo_card.value | json}}</p>-->
+<!--      </section>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+
+<!--  <div class="todo-card" *ngFor="let p of projects">-->
+<!--    <ng-container *ngFor="let t of todos" >-->
+<!--      <section class="todos-section" [formGroup]="todo_card">-->
+<!--          <p *ngIf="t.project_id == p.id" id="todo-checkbox">-->
+<!--            <mat-checkbox [checked]="t.isComplited" #c (change)="checkInfo(c.checked)">-->
+<!--              {{t.text}}-->
+<!--            </mat-checkbox>-->
+<!--          </p>-->
+<!--      </section>-->
+<!--    </ng-container>-->
+<!--  </div>-->
+
+  <mat-card class="todo-card" *ngFor="let p of projects">
+    <mat-card-header>
+      <mat-card-title>{{p.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngFor="let t of todos" >
+        <section class="todos-section" [formGroup]="todo_card">
+          <p *ngIf="t.project_id == p.id" id="todo-checkbox">
+            <mat-checkbox [checked]="t.isComplited" [id] = "t.id" (change)="checkInfo(t.id)">
+              {{t.text}}
+            </mat-checkbox>
+          </p>
+        </section>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+
+
+</div>
