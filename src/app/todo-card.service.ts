@@ -7,7 +7,7 @@ import {plainToClass} from "class-transformer";
 import {BehaviorSubject, Subject} from "rxjs";
 
 const INIT_DATA: any[] = [];
-const BASE_URL: string = 'http://pacific-temple-51325.herokuapp.com/'
+const BASE_URL: string = 'https://pacific-temple-51325.herokuapp.com/'
 
 @Injectable({
   providedIn: 'root'
