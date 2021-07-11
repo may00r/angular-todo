@@ -15,11 +15,9 @@ export class AppComponent implements OnInit {
     this.todoCardService.refreshNeeded$
       .subscribe(() => {
         this.todoCardService.getProjects();
-        this.todoCardService.getTodos();
       });
 
     this.todoCardService.getProjects();
-    this.todoCardService.getTodos();
   }
 
 }

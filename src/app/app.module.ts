@@ -17,7 +17,6 @@ import { TodoCardService } from "./todo-card.service";
 import {Project} from "./project";
 import {Todo} from "./todo";
 import { TodoAddComponent } from './todo-add/todo-add.component';
-import { TodoAddService } from "./todo-add.service";
 import { MatDialogModule } from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
@@ -48,7 +47,7 @@ import {MatInputModule} from "@angular/material/input";
     MatOptionModule,
     MatInputModule
   ],
-  providers: [TodoCardService, TodoAddService, Project, Todo],
+  providers: [TodoCardService, Project, Todo],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,16 +1,14 @@
 <div class="content" *ngIf="projects$ | async">
-  <mat-card class="todo-card" *ngFor="let p of projects$ | async">
+  <mat-card class="todo-card" *ngFor="let p of projects$ | async;  trackBy: trackByFn">
     <mat-card-header>
       <mat-card-title>{{p.title}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <ng-container *ngFor="let t of todos$ | async" >
+      <ng-container *ngFor="let t of p.todos; trackBy: trackByFn">
         <section class="todos-section" [formGroup]="todo_card">
-          <p *ngIf="t.project_id == p.id" id="todo-checkbox">
-            <mat-checkbox [checked]="t.isComplited" [id]="t.id.toString()" #c (change)="checkChange(c.id, c.checked)">
-              {{t.text}}
-            </mat-checkbox>
-          </p>
+          <mat-checkbox [checked]="t.isComplited" [id]="t.id.toString()" #c (change)="checkChange(c.id, c.checked, p.id)">
+            {{t.text}}
+          </mat-checkbox>
         </section>
       </ng-container>
     </mat-card-content>

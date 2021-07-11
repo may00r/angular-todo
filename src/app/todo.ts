@@ -1,5 +1,3 @@
-import { Expose } from "class-transformer";
-
 export class Todo {
   id: number = 0;
   text: string = '';
