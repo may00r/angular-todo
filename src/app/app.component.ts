@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ApplicationRef} from '@angular/core';
 import {TodoCardService} from "./todo-card.service";
 
 @Component({
@@ -9,15 +9,9 @@ import {TodoCardService} from "./todo-card.service";
 export class AppComponent implements OnInit {
   title = 'angular-todos';
 
-  constructor(public todoCardService: TodoCardService) {  }
+  constructor(public todoCardService: TodoCardService, public app: ApplicationRef) {  }
 
   ngOnInit() {
-    this.todoCardService.refreshNeeded$
-      .subscribe(() => {
-        this.todoCardService.getProjects();
-      });
-
     this.todoCardService.getProjects();
   }
-
 }

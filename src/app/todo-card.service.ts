@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Project} from "./project";
-import {map, tap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {plainToClass} from "class-transformer";
-import {BehaviorSubject, Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
+import {environment} from "../environments/environment";
 
 const INIT_DATA: any[] = [];
-const BASE_URL: string = 'http://127.0.0.1:3000/'
+const BASE_URL: string = environment.apiUrl
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoCardService {
-  public  projects: Project[] = [];
+  public projects: Project[] = [];
   public ProjectStore$: BehaviorSubject<Project[]> = new BehaviorSubject(INIT_DATA);
-  private _refreshNeeded$ = new Subject<void>();
 
   constructor(private http: HttpClient) {  }
 
@@ -44,16 +44,11 @@ export class TodoCardService {
   public postTodo(todo: string, projectId: any) {
     const url = BASE_URL + 'projects/' + projectId + '/todos';
     return this.http.post(url, {"text": todo, "isComplited": false, "project_id": projectId})
-      .pipe(tap(() => {
-        this._refreshNeeded$.next();
-      }))
+      .pipe(map(response => plainToClass(Project, response as Object)))
       .subscribe(response => {
-        console.log(response);
+        this.projects[projectId - 1] = response;
+        this.ProjectStore$.next(this.projects);
       })
-  }
-
-  get refreshNeeded$() {
-    return this._refreshNeeded$;
   }
 
 }

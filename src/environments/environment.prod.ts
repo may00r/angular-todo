@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://pacific-temple-51325.herokuapp.com/'
 };

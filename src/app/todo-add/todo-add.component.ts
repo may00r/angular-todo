@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FormControl, Validators} from '@angular/forms';
 import {TodoCardService} from "../todo-card.service";
@@ -9,7 +9,7 @@ import {pluck} from "rxjs/operators";
 @Component({
   selector: 'app-todo-add',
   templateUrl: './todo-add.component.html',
-  styleUrls: ['./todo-add.component.scss']
+  styleUrls: ['./todo-add.component.scss'],
 })
 export class TodoAddComponent implements OnInit{
   public projects$: Observable<Project[]> = new Observable<Project[]>();
@@ -20,6 +20,7 @@ export class TodoAddComponent implements OnInit{
   constructor(
     public todoCardService: TodoCardService,
     public dialog: MatDialog) {
+
   }
 
   ngOnInit(): void {
