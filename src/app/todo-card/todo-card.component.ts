@@ -30,8 +30,8 @@ export class TodoCardComponent implements OnInit {
     this.todoCardService.patchTodo(todoId, isComplited, projectId);
   }
 
-  trackByFn(index: number, item: any) {
-    return item.id;
+  trackByFn(index: number) {
+    return index;
   }
 
 }

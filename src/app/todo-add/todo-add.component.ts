@@ -34,10 +34,10 @@ export class TodoAddComponent implements OnInit{
     });
   }
 
-  newTodo(todo: string, projectId: string, projectTitle: string = '') {
-    if (projectId == '') {
+  newTodo(todo: string, projectId: number, projectTitle: string = '') {
+    if (!projectId) {
       this.todoCardService.postProject(projectTitle)
-        .pipe(pluck("id"))
+        .pipe<number>(pluck("id"))
         .subscribe( id => {
           this.todoCardService.postTodo(todo, id);
         })
@@ -46,8 +46,8 @@ export class TodoAddComponent implements OnInit{
     }
   }
 
-  trackByFn(index: number, item: any) {
-    return item.id;
+  trackByFn(index: number) {
+    return index;
   }
 
 }
